@@ -2,10 +2,10 @@
 #define MONTY_H
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
 #include <unistd.h>
-#include <fcntl.h>
 #include <string.h>
+#include <sys/types.h>
+#include <fcntl.h>
 #include <ctype.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -23,22 +23,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 /**
- * struct bus_s - variables -args, file, line content
- * @arg: value
- * @file: pointer to monty file
- * @content: line content
- * @lifi: flag change stack <-> queue
- * Description: carries values through the program
- */
-typedef struct bus_s
-{
-	char *arg;
-	FILE *file;
-	char *content;
-	int lifi;
-}  bus_t;
-extern bus_t bus;
-/**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
  * @f: function to handle the opcode
@@ -51,28 +35,41 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
-ssize_t getstdin(char **lineptr, int file);
-char  *clean_line(char *content);
-void f_push(stack_t **head, unsigned int number);
-void f_pall(stack_t **head, unsigned int number);
-void f_pint(stack_t **head, unsigned int number);
-void execute(char *content, stack_t **head, unsigned int counter, FILE *file);
-void free_stack(stack_t *head);
-void f_pop(stack_t **head, unsigned int counter);
-void f_swap(stack_t **head, unsigned int counter);
-void f_add(stack_t **head, unsigned int counter);
-void f_nop(stack_t **head, unsigned int counter);
-void f_sub(stack_t **head, unsigned int counter);
-void f_div(stack_t **head, unsigned int counter);
-void f_mul(stack_t **head, unsigned int counter);
-void f_mod(stack_t **head, unsigned int counter);
-void f_pchar(stack_t **head, unsigned int counter);
-void f_pstr(stack_t **head, unsigned int counter);
-void f_rotl(stack_t **head, unsigned int counter);
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
-void addnode(stack_t **head, int n);
-void addqueue(stack_t **head, int n);
-void f_queue(stack_t **head, unsigned int counter);
-void f_stack(stack_t **head, unsigned int counter);
+/**
+ * struct Global_Struct_Par - parameters of stack
+ * @Global_U8_Par: value
+ * @Global_File: pointer to monty file
+ * @Global_U8_Value: line content
+ * @Global_U32_Queue: flag change stack <-> queue
+ * Description: deines the parameters of the stack
+ */
+typedef struct Global_Struct_Par
+{
+	char *Global_U8_Par;
+	FILE *Global_File;
+	char *Global_U8_Value;
+	int Global_U32_Queue;
+}  Global_Struct_Par;
+extern Global_Struct_Par Global_Par;
+void Void_Sub(stack_t **, unsigned int);
+void Void_Mod(stack_t **, unsigned int);
+void Void_AddStack(stack_t **, int);
+void Void_Push(stack_t **, unsigned int);
+void Void_FreeStack(stack_t *);
+void Void_Pall(stack_t **, unsigned int);
+void Void_Pint(stack_t **, unsigned int);
+void Void_Execute(char *, stack_t **, unsigned int, FILE *);
+void Void_Pop(stack_t **, unsigned int);
+void Void_Swap(stack_t **, unsigned int);
+void Void_Add(stack_t **, unsigned int);
+void Void_Nop(stack_t **, unsigned int);
+void Void_Div(stack_t **, unsigned int);
+void Void_Mul(stack_t **, unsigned int);
+void Void_Pchar(stack_t **, unsigned int);
+void Void_Pstr(stack_t **, unsigned int);
+void Void_Rotl(stack_t **, unsigned int);
+void Void_Rotr(stack_t **, unsigned int);
+void Void_AddQueue(stack_t **, int);
+void Void_Stack(stack_t **, unsigned int);
+void Void_Queue(stack_t **, unsigned int);
 #endif

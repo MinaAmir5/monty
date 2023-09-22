@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * f_add - adds the top two elements of the stack.
+ * Void_Add - adds the top two elements of the stack.
  * @Copy_Stack_Head: stack head
  * @Copy_U32_Counter: line number
 */
-void f_add(stack_t **Copy_Stack_Head, unsigned int Copy_U32_Counter)
+void Void_Add(stack_t **Copy_Stack_Head, unsigned int Copy_U32_Counter)
 {
 	stack_t *Local_Stack_Queue;
 
@@ -19,9 +19,9 @@ void f_add(stack_t **Copy_Stack_Head, unsigned int Copy_U32_Counter)
 	else
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", Copy_U32_Counter);
-		free(bus.content);
-		free_stack(*Copy_Stack_Head);
-		fclose(bus.file);
+		free(Global_Par.Global_U8_Value);
+		Void_FreeStack(*Copy_Stack_Head);
+		fclose(Global_Par.Global_File);
 		exit(EXIT_FAILURE);
 	}
 }
